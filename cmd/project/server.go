@@ -1,4 +1,4 @@
-package application
+package project
 
 import (
 	"github.com/spf13/cobra"
@@ -8,9 +8,9 @@ import (
 var (
 	appName  string
 	StartCmd = &cobra.Command{
-		Use:          "create",
+		Use:          "project",
 		Short:        "Create a go-dandelion project",
-		Example:      "go-dandelion-cli create -n example-application",
+		Example:      "go-dandelion-cli project -n example-application",
 		SilenceUsage: true,
 		PreRun: func(cmd *cobra.Command, args []string) {
 			setup()
@@ -29,6 +29,6 @@ func setup() {
 }
 
 func run() error {
-	build.BuildApplication(appName)
+	build.NewProject(appName)
 	return nil
 }

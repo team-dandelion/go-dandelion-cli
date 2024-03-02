@@ -4,11 +4,10 @@ import (
 	"fmt"
 	"github.com/common-nighthawk/go-figure"
 	"github.com/gly-hub/toolbox/file"
-	"os/exec"
 	"path"
 )
 
-// 构建网关服务
+// HttpTools Build gateway service
 type HttpTools struct {
 	Http      bool
 	RpcServer bool
@@ -19,25 +18,21 @@ type HttpTools struct {
 	Trace     bool
 }
 
-// HttpBuilder http服务构建器
+// HttpBuilder http service builder
 type HttpBuilder struct {
 	App         string
 	ServerName  string
 	serverDir   string
 	PackageName string
 	Tools       RpcTools
+	Pwd         string
 }
 
-// BuildHttpServer 构建rpc服务
+// BuildHttpServer Building rpc Services
 func (r *HttpBuilder) BuildHttpServer() {
-	// 生成服务目录
-	pwd, err := file.GetPwd()
-	if err != nil {
-		return
-	}
-	serverDir := path.Join(pwd, r.ServerName)
+	serverDir := path.Join(r.Pwd, r.ServerName)
 	// 创建应用文件夹
-	if err = file.CreateDir(serverDir); err != nil {
+	if err := file.CreateDir(serverDir); err != nil {
 		return
 	}
 	r.serverDir = serverDir
@@ -51,12 +46,6 @@ func (r *HttpBuilder) BuildHttpServer() {
 	_ = r.buildStatic()
 	// 生成main文件
 	_ = r.buildMain()
-	// 执行mod
-	// 创建mod文件
-	cmd2 := exec.Command("go", "mod", "init", r.App)
-	_ = cmd2.Run()
-	cmd3 := exec.Command("go", "mod", "tidy")
-	_ = cmd3.Run()
 }
 
 func (r *HttpBuilder) buildCmd() (err error) {

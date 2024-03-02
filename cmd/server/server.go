@@ -1,4 +1,4 @@
-package build
+package server
 
 import (
 	"fmt"
@@ -7,10 +7,9 @@ import (
 )
 
 var (
-	appName  string
 	StartCmd = &cobra.Command{
 		Use:          "server",
-		Short:        "生成服务结构代码",
+		Short:        "Generate service structure code",
 		Example:      "go-dandelion-cli build -n example-application",
 		SilenceUsage: true,
 		PreRun: func(cmd *cobra.Command, args []string) {
@@ -23,7 +22,7 @@ var (
 )
 
 func init() {
-	StartCmd.PersistentFlags().StringVarP(&appName, "name", "n", "example-server", "服务器名称")
+
 }
 
 func setup() {
@@ -38,11 +37,11 @@ func run() error {
 	}
 	switch serverType {
 	case 1:
-		return build.Rpc(appName)
+		return build.Rpc()
 	case 2:
-		return build.Http(appName)
+		return build.Http()
 	default:
-		fmt.Println("不支持该类型！")
+		fmt.Println("This type is not supported!")
 	}
 	return nil
 }

@@ -18,9 +18,9 @@ logger:
 rpcClient:
   clientName: "{{ .ServerName }}"
   basePath: "{{ .App }}"
-  registerPlugin: "etcd"
+  registerPlugin: "multiple"
   registerServers:
-    - "127.0.0.1:2379"
+    - "127.0.0.1:8899"
   failRetryModel: 3
   balanceModel: 2
   poolSize: 1
@@ -29,7 +29,7 @@ rpcClient:
 {{if .Tools.RpcServer}}
 rpcServer:
   serverName: "{{ .ServerName }}"
-  registerPlugin: "etcd"
+  registerPlugin: "multiple"
   registerServers:
     - "127.0.0.1:2379"
   basePath: "{{ .App }}"

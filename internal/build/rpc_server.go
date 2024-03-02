@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/common-nighthawk/go-figure"
 	"github.com/gly-hub/toolbox/file"
-	"os/exec"
 	"path"
 )
 
@@ -25,18 +24,14 @@ type RpcBuilder struct {
 	serverDir   string
 	PackageName string
 	Tools       RpcTools
+	Pwd         string
 }
 
 // BuildRpcServer 构建rpc服务
 func (r *RpcBuilder) BuildRpcServer() {
-	// 生成服务目录
-	pwd, err := file.GetPwd()
-	if err != nil {
-		return
-	}
-	serverDir := path.Join(pwd, r.ServerName)
+	serverDir := path.Join(r.Pwd, r.ServerName)
 	// 创建应用文件夹
-	if err = file.CreateDir(serverDir); err != nil {
+	if err := file.CreateDir(serverDir); err != nil {
 		return
 	}
 	r.serverDir = serverDir
@@ -56,12 +51,6 @@ func (r *RpcBuilder) BuildRpcServer() {
 	_ = r.buildTools()
 	// 生成main文件
 	_ = r.buildMain()
-	// 执行mod
-	// 创建mod文件
-	cmd2 := exec.Command("go", "mod", "init", r.App)
-	_ = cmd2.Run()
-	cmd3 := exec.Command("go", "mod", "tidy")
-	_ = cmd3.Run()
 }
 
 func (r *RpcBuilder) buildBoot() (err error) {
