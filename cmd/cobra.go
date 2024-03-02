@@ -2,21 +2,20 @@ package cmd
 
 import (
 	"errors"
-	"github.com/gly-hub/go-dandelion-cli/cmd/application"
-	"github.com/gly-hub/go-dandelion-cli/cmd/build"
-	"github.com/gly-hub/go-dandelion/logger"
 	"github.com/spf13/cobra"
+	"github.com/team-dandelion/go-dandelion/go-dandelion-cli/cmd/application"
+	"github.com/team-dandelion/go-dandelion/go-dandelion-cli/cmd/build"
 	"os"
 )
 
 var rootCmd = &cobra.Command{
-	Use:          "github.com/gly-hub/go-dandelion-cli",
+	Use:          "github.com/team-dandelion/go-dandelion/go-dandelion-cli",
 	Short:        "go-dandelion-cli",
 	SilenceUsage: true,
 	Long:         "go-dandelion-cli",
 	Args: func(cmd *cobra.Command, args []string) error {
 		if len(args) < 1 {
-			return errors.New(logger.Red("requires at least one arg"))
+			return errors.New("requires at least one arg")
 		}
 		return nil
 	},
