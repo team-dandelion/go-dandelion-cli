@@ -4,18 +4,26 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
-	"github.com/gly-hub/toolbox/file"
 	"log"
 	"os"
 	"os/exec"
 	"path"
 	"strings"
+
+	"github.com/gly-hub/toolbox/file"
 )
 
 // 构建应用基础架构
 
 // NewProject Create an application
 func NewProject(projectName string) {
+	// Ask user to choose project type
+	isTemplate, err := EnterBool("Do you want to create a template project with logic and gateway services?", false)
+	if err != nil {
+		fmt.Println("Failed to get project type:", err)
+		return
+	}
+
 	pwd, err := file.GetPwd()
 	if err != nil {
 		return
@@ -47,18 +55,22 @@ func NewProject(projectName string) {
 		return
 	}
 
-	// Create the logic-rpc service
-	fmt.Println("Creating the logic-rpc service.（logic service）")
-	_ = buildRpc(appDir, projectName, "logic-rpc", true)
+	if isTemplate {
+		// Create the logic-rpc service
+		fmt.Println("Creating the logic-rpc service.（logic service）")
+		_ = buildRpc(appDir, projectName, "logic-rpc", true)
 
-	// Create the logic-http service
-	fmt.Println("Creating the gateway-http service.（gateway service）")
-	_ = buildHttp(appDir, projectName, "gateway-http", true)
-	// Pull the dependency configuration
-	fmt.Println("Pulling the dependency configuration")
-	cmd3 := exec.Command("go", "mod", "tidy")
-	cmd3.Dir = appDir
-	_ = cmd3.Run()
+		// Create the logic-http service
+		fmt.Println("Creating the gateway-http service.（gateway service）")
+		_ = buildHttp(appDir, projectName, "gateway-http", true)
+
+		// Pull the dependency configuration
+		fmt.Println("Pulling the dependency configuration")
+		cmd3 := exec.Command("go", "mod", "tidy")
+		cmd3.Dir = appDir
+		_ = cmd3.Run()
+	}
+
 	fmt.Println(`Project creation completed!`)
 }
 
