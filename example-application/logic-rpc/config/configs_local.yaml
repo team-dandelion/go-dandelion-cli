@@ -1,4 +1,4 @@
-{{- if .Tools.Logger }}
+
 logger:
   #Level 0 紧急的 1警报 2重要的 3错误 4警告 5提示 6信息 7调试
   consoleShow: true
@@ -7,35 +7,17 @@ logger:
   fileLevel:  7
   multiFileWrite: false
   multiFileLevel: 7
-{{ end }}
-{{- if .Tools.Http }}
-httpServer:
-  port: 8080
-  pprof: 8088
-{{ end }}
-{{- if .Tools.RpcClient}}
-rpcClient:
-  clientName: "{{ .ServerName }}"
-  basePath: "{{ .App }}"
-  registerPlugin: "multiple"
-  registerServers:
-    - "127.0.0.1:8899"
-  failRetryModel: 3
-  balanceModel: 2
-  poolSize: 1
-{{end}}
-{{- if .Tools.RpcServer}}
+
 rpcServer:
-  serverName: "{{ .ServerName }}"
+  serverName: "logic-rpc"
   registerPlugin: "multiple"
   registerServers:
     - "127.0.0.1:2379"
-  basePath: "{{ .App }}"
+  basePath: "example-application"
   addr: ""
   port: 8899
   pprof: 18899
-{{end}}
-{{- if .Tools.DB}}
+
 db:
   dbType: "mysql"
   maxOpenConn: 20
@@ -56,8 +38,7 @@ db:
       host: "127.0.0.1"
       port: "3306"
       database: "database"
-{{end}}
-{{- if .Tools.Redis}}
+
 redis:
   redisType: "alone"
   startAddr: ["127.0.0.1:6379"]
@@ -68,10 +49,9 @@ redis:
   readTimeout: "100ms"
   writeTimeout: "100ms"
   idleTimeout: "100ms"
-{{end}}
-{{- if .Tools.Trace}}
+
 tracer:
   openTrace: true
-  traceName: "{{ .ServerName }}"
+  traceName: "logic-rpc"
   host: "127.0.0.1:6831"
-{{end}}
+

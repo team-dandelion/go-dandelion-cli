@@ -3,7 +3,7 @@ package api
 import (
 	"fmt"
 	routing "github.com/gly-hub/fasthttp-routing"
-	"example-project/gateway-http/internal/route"
+	"example-application/gateway-http/internal/route"
 	"github.com/team-dandelion/go-dandelion/application"
 	"github.com/team-dandelion/go-dandelion/config"
 	"github.com/team-dandelion/go-dandelion/logger"

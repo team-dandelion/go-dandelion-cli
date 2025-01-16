@@ -8,30 +8,19 @@ logger:
   multiFileWrite: false
   multiFileLevel: 7
 
-
 httpServer:
   port: 8080
   pprof: 8088
 
-
-
 rpcClient:
   clientName: "gateway-http"
-  basePath: "example-project"
+  basePath: "example-application"
   registerPlugin: "multiple"
   registerServers:
     - "127.0.0.1:8899"
   failRetryModel: 3
   balanceModel: 2
   poolSize: 1
-
-
-
-
-
-
-
-
 
 tracer:
   openTrace: true

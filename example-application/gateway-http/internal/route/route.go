@@ -1,7 +1,6 @@
 package route
 
 import (
-	"example-project/gateway-http/internal/service"
 	"github.com/team-dandelion/go-dandelion/application"
 	"github.com/team-dandelion/go-dandelion/config"
 	"github.com/team-dandelion/go-dandelion/server/http/middleware"
@@ -17,7 +16,6 @@ func InitRoute() {
 	}
 
 	// 可在该处注册相关子集路由 TODO
-	testController := new(service.AuthController)
-	baseRouter.Get("/test", testController.TestFunc)
+
 	return
 }

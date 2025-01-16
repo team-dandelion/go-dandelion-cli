@@ -1,12 +1,12 @@
-module example-project
+module example-application
 
 go 1.20
 
 require (
 	github.com/gly-hub/fasthttp-routing v0.0.0-20230103092213-f65d0ebb75bb
-	github.com/gly-hub/toolbox v0.0.0-20230630080251-d1ee57b14759
-	github.com/spf13/cobra v1.8.0
-	github.com/team-dandelion/go-dandelion main
+	github.com/gly-hub/toolbox v0.0.0-20240302072516-c93ff26bbbcc
+	github.com/spf13/cobra v1.8.1
+	github.com/team-dandelion/go-dandelion v1.3.0
 )
 
 require (

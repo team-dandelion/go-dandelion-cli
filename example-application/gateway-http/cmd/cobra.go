@@ -2,14 +2,14 @@ package cmd
 
 import (
 	"errors"
-	"example-project/gateway-http/cmd/api"
+	"example-application/gateway-http/cmd/api"
 	"github.com/team-dandelion/go-dandelion/logger"
 	"github.com/spf13/cobra"
 	"os"
 )
 
 var rootCmd = &cobra.Command{
-	Use: "example-project/gateway-http",
+	Use: "example-application/gateway-http",
 	Short: "gateway-http",
 	SilenceUsage:true,
 	Long: "authorize",

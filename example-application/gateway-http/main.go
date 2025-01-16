@@ -1,6 +1,6 @@
 package main
 
-import "example-project/logic-rpc/cmd"
+import "example-application/gateway-http/cmd"
 
 func main() {
 	cmd.Execute()

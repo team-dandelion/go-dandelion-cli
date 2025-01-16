@@ -2,8 +2,8 @@ package api
 
 import (
 	"fmt"
-	"example-project/logic-rpc/boot"
-	"example-project/logic-rpc/internal/service"
+	"example-application/logic-rpc/boot"
+	"example-application/logic-rpc/internal/service"
 	"github.com/team-dandelion/go-dandelion/application"
 	"github.com/team-dandelion/go-dandelion/config"
 	"github.com/team-dandelion/go-dandelion/logger"

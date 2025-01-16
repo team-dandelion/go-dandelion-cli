@@ -2,14 +2,14 @@ package cmd
 
 import (
 	"errors"
-	"example-project/logic-rpc/cmd/api"
+	"example-application/logic-rpc/cmd/api"
 	"github.com/team-dandelion/go-dandelion/logger"
 	"github.com/spf13/cobra"
 	"os"
 )
 
 var rootCmd = &cobra.Command{
-	Use: "example-project/logic-rpc",
+	Use: "example-application/logic-rpc",
 	Short: "logic-rpc",
 	SilenceUsage:true,
 	Long: "authorize",
